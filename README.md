@@ -1,27 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-import fetch from 'node-fetch'
-import moment from 'moment'
 
-const bitcoinPrice = async () => {
-  const res = await fetch("<https://blockchain.info/ticker>")
-  const json = await res.json()
-  const lastPrice = json.USD.last+""
-
-  const [ints, decimals] = lastPrice.split(".")
-
-  return ints.slice(0, -3) + "," + ints.slice(-3) + "." + decimals
-}
-
-export default async (req, res) => {
-  const btc = await bitcoinPrice()
-
-  res.json({
-    icon: 'bitcoin',
-    subject: `Bitcoin Price USD (${moment().format('h:mma')})`,
-    color: 'blue',
-    status: `\\$${btc}`
-  })
-}
 ## Available Scripts
 
 In the project directory, you can run:
